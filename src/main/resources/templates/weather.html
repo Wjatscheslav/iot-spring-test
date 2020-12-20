@@ -1,0 +1,73 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              crossorigin="anonymous">
+        <title>Weather Data</title>
+    </head>
+    <body>
+        <h1>Java IoT coding task - Weather Data</h1>
+
+        <br/>
+
+        <h3>Stats</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Sensor type</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${weatherStats.empty}">
+                    <td>No data available</td>
+                </tr>
+                <tr th:each="stats : ${weatherStats}">
+                    <td>
+                        <span th:text="${stats.sensorType}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${stats.minValue}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${stats.maxValue}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br/>
+
+        <h3>Alarms</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Sensor type</th>
+                <th>Alarm date</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${weatherAlarms.empty}">
+                <td>No data available</td>
+            </tr>
+            <tr th:each="alarm : ${weatherAlarms}">
+                <td>
+                    <span th:text="${alarm.sensorType}"></span>
+                </td>
+                <td>
+                    <span th:text="${alarm.alarmDate}"></span>
+                </td>
+                <td>
+                    <span th:text="${alarm.value}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/}" class="btn btn-info">Back</a>
+        <a th:href="@{/reset}" class="btn btn-danger">Reset data</a>
+    </body>
+</html>
